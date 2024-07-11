@@ -24,7 +24,7 @@ export const modal = () => (`
 export default (bill) => {
 
   return (`
-    <div class="container dashboard-form" data-testid="dashboard-form">
+    <div class="container dashboard-form" data-testid="dashboard-form" data-billid="${bill.id}">
       <div class="row">
         <div class="col-sm" id="dashboard-form-col1">
           <label for="expense-type" class="bold-label">Type de dépense</label>
