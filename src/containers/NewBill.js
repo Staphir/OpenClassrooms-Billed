@@ -19,7 +19,7 @@ export default class NewBill {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
-    const fileName = filePath[filePath.length-1]
+    const fileName = file.name
     const fileExt = fileName.split('.')[1]
     if (fileExt == 'jpg' || fileExt == 'jpeg' || fileExt == 'png'){
       const formData = new FormData()
@@ -36,20 +36,18 @@ export default class NewBill {
           }
         })
         .then(({fileUrl, key}) => {
-          console.log(fileUrl)
           this.billId = key
           this.fileUrl = fileUrl
           this.fileName = fileName
         }).catch(error => console.error(error))
     } else {
-      alert('Vueillez choisir une image (jpg, jpeg ou png)')
+      alert('Veuillez choisir une image (jpg, jpeg ou png)')
       $(`input[data-testid="file"]`).val(null)
     }
 
   }
   handleSubmit = e => {
     e.preventDefault()
-    console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
     const email = JSON.parse(localStorage.getItem("user")).email
     const bill = {
       email,
