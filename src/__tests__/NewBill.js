@@ -10,7 +10,7 @@ import { bills } from "../fixtures/bills.js"
 import userEvent from "@testing-library/user-event"
 import { ROUTES, ROUTES_PATH } from "../constants/routes"
 import {localStorageMock} from "../__mocks__/localStorage.js";
-import {mockStore} from "../__mocks__/store";
+import mockStore from "../__mocks__/store";
 
 jest.mock("../app/store", () => mockStore)
 describe("Given I am connected as an employee", () => {
@@ -81,19 +81,18 @@ describe("Given I am connected as an employee", () => {
           email: "e@e"
         }))
 
-        // jest.spyOn(mockStore, "bills")
         const newBill = new NewBill(
-          {document, onNavigate, mockStore, localStorageMock}
+          {document, onNavigate, store:mockStore, localStorage:localStorageMock}
         )
+        
         const alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
 
-        const mockedFile = new File(["(⌐□_□)"], "test.jpg", { type: "image/jpg" });
+        const mockedFile = new File([""], "test.jpg", { type: "image/jpg" });
         const handleChangeFile = jest.fn(e => newBill.handleChangeFile(e))
         const file = screen.getByTestId("file")
         file.addEventListener('change', handleChangeFile)
-        fireEvent.change(file, { target: { files: [mockedFile] } })
-        userEvent.upload(file, mockedFile)
 
+        fireEvent.change(file, { target: { files: [mockedFile] } })
         
         expect(handleChangeFile).toHaveBeenCalled()
 
@@ -116,7 +115,7 @@ describe("Given I am connected as an employee", () => {
         }))
 
         const newBill = new NewBill(
-          {document, onNavigate, mockStore, localStorageMock}
+          {document, onNavigate, store:mockStore, localStorage:localStorageMock}
         )
 
         const alertSpy = jest.spyOn(window, 'alert').mockImplementation(() => {});
@@ -125,6 +124,7 @@ describe("Given I am connected as an employee", () => {
         const file = screen.getByTestId("file")
         const handleChangeFile = jest.fn(newBill.handleChangeFile)
         file.addEventListener('change', handleChangeFile)
+
         fireEvent.change(file, { target: { files: [mockedFile] } })
         
         expect(handleChangeFile).toHaveBeenCalled()
