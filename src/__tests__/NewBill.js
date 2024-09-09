@@ -27,6 +27,10 @@ describe("Given I am connected as an employee", () => {
         'localStorage',
         { value: localStorageMock }
       )
+      window.localStorage.setItem('user', JSON.stringify({
+        type: 'Employee',
+        email: "e@e"
+      }))
 
       const newBill = new NewBill(
         {document, onNavigate, mockStore, localStorageMock}
@@ -72,6 +76,10 @@ describe("Given I am connected as an employee", () => {
           'localStorage',
           { value: localStorageMock }
         )
+        window.localStorage.setItem('user', JSON.stringify({
+          type: 'Employee',
+          email: "e@e"
+        }))
 
         const newBill = new NewBill(
           {document, onNavigate, store:mockStore, localStorage:localStorageMock}
@@ -101,6 +109,10 @@ describe("Given I am connected as an employee", () => {
           'localStorage',
           { value: localStorageMock }
         )
+        window.localStorage.setItem('user', JSON.stringify({
+          type: 'Employee',
+          email: "e@e"
+        }))
 
         const newBill = new NewBill(
           {document, onNavigate, store:mockStore, localStorage:localStorageMock}
@@ -130,6 +142,10 @@ describe("Given I am connected as an employee", () => {
         'localStorage',
         { value: localStorageMock }
       )
+      window.localStorage.setItem('user', JSON.stringify({
+        type: 'Employee',
+        email: "e@e"
+      }))
 
       const newBill = new NewBill(
         {document, onNavigate, mockStore, localStorageMock}
